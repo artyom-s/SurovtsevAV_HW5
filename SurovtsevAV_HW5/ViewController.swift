@@ -12,21 +12,23 @@ class ViewController: UIViewController {
 
     
     @IBOutlet var userNameTF: UITextField!
-    var userName: String! = "1"
-    var enteredUserName = ""
+    var userName = ""
+    var enteredUserName = "1"
     
     @IBOutlet var passwordTF: UITextField!
-    var password: String! = "1"
-    var enteredPassword = ""
+    var password: String! = ""
+    var enteredPassword = "1"
     
+    @IBOutlet var logInButton: UIButton!
+
     @IBAction func userNameEntered() {
     }
     @IBAction func passwordEntered() {
     }
+
     
     // Log in button
-    
-    @IBAction func logInButtin() {
+    @IBAction func logInthroughButton() {
         enteredUserName = userNameTF.text!
         enteredPassword = passwordTF.text!
         
@@ -39,19 +41,25 @@ class ViewController: UIViewController {
     }
     
     // Hint buttons
-    
     @IBAction func hintUserNameButton() {
-        showAlert (title: "Hint 😛", message: "User name is: «\(userName!)»")
+        showAlert (title: "Hint 😛", message: "User name is: «\(userName)»")
     }
     @IBAction func hintPasswordButton() {
         showAlert (title: "Hint 😛", message: "Password is: «\(password!)»")
     }
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        logInButton.layer.cornerRadius = 20
+        
+        // New User name and Password
+        self.userName = enteredUserName
+        self.password = enteredPassword
+    }
 }
 
 // Alert control
-
 extension ViewController {
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(
@@ -66,10 +74,5 @@ extension ViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
 }
 
-//override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    let controller = segue.destinationViewController as! SecondVC //приводим `destinationViewController` к нужному нам `SecondVC`
-//    controller.s = "Woohoo" //s - строковая переменная, которой присваивем "Woohoo"
-//}
