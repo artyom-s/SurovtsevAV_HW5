@@ -13,6 +13,7 @@ class secondViewController: UIViewController {
     @IBOutlet var newUserNameTF: UITextField!
     @IBOutlet var newPasswordTF: UITextField!
     @IBOutlet var saveButton: UIButton!
+    @IBOutlet var mainView: UIView!
     
     var newUserName: String = ""
     var newPassword: String = ""
@@ -49,6 +50,7 @@ class secondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.layer.cornerRadius = 20
+        mainView.layer.cornerRadius = 20
     }
 }
 

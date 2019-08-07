@@ -13,28 +13,26 @@ class ViewController: UIViewController {
     
     @IBOutlet var userNameTF: UITextField!
     var userName = ""
-    var enteredUserName = "1"
+    var enteredUserName = "login"
     
     @IBOutlet var passwordTF: UITextField!
     var password: String! = ""
-    var enteredPassword = "1"
+    var enteredPassword = "password"
     
     @IBOutlet var logInButton: UIButton!
-
+    @IBOutlet var mainView: UIView!
+    
     @IBAction func userNameEntered() {
     }
     @IBAction func passwordEntered() {
     }
 
-    
     // Log in button
     @IBAction func logInthroughButton() {
         enteredUserName = userNameTF.text!
         enteredPassword = passwordTF.text!
-        
         if enteredUserName == userName && enteredPassword == password {
             performSegue(withIdentifier: "goToSecondScreen", sender: nil)
-            
         } else {
             showAlert(title: "Error", message: "Wrong User name or Password? Please, use hint buttons below")
         }
@@ -50,9 +48,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         logInButton.layer.cornerRadius = 20
-        
+        mainView.layer.cornerRadius = 20
         // New User name and Password
         self.userName = enteredUserName
         self.password = enteredPassword
