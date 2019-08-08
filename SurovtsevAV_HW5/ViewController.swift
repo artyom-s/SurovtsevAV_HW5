@@ -8,33 +8,41 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet var userNameTF: UITextField!
-    var userName = ""
-    var enteredUserName = "login"
-    
     @IBOutlet var passwordTF: UITextField!
-    var password: String! = ""
-    var enteredPassword = "password"
-    
     @IBOutlet var logInButton: UIButton!
     @IBOutlet var mainView: UIView!
     
-    @IBAction func userNameEntered() {
+    var userName = "login"
+    var password = "password"
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        logInButton.layer.cornerRadius = 20
+        mainView.layer.cornerRadius = 20
     }
-    @IBAction func passwordEntered() {
+
+    // Return New user name from second VC
+    @IBAction func unwindSegue(segue: UIStoryboardSegue){
+        let secondVC = segue.source as! secondViewController
+        userNameTF.text = ""
+        passwordTF.text = ""
+        if secondVC.dataChanged == true {
+        userName = secondVC.newUserName
+        password = secondVC.newPassword
+        }
     }
 
     // Log in button
     @IBAction func logInthroughButton() {
-        enteredUserName = userNameTF.text!
-        enteredPassword = passwordTF.text!
-        if enteredUserName == userName && enteredPassword == password {
+        if userNameTF.text == userName && passwordTF.text == password {
             performSegue(withIdentifier: "goToSecondScreen", sender: nil)
         } else {
-            showAlert(title: "Error", message: "Wrong User name or Password? Please, use hint buttons below")
+            showAlert(title: "Error", message: "Wrong User name or Password! Please, use hint buttons below")
+            passwordTF.text = ""
         }
     }
     
@@ -43,16 +51,28 @@ class ViewController: UIViewController {
         showAlert (title: "Hint 😛", message: "User name is: «\(userName)»")
     }
     @IBAction func hintPasswordButton() {
-        showAlert (title: "Hint 😛", message: "Password is: «\(password!)»")
+        showAlert (title: "Hint 😛", message: "Password is: «\(password)»")
+    }
+
+    // User Name to secondVC
+    override func  prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSecondScreen" {
+            let secondVC = segue.destination as! secondViewController
+            secondVC.textToLabel = userName
+        }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        logInButton.layer.cornerRadius = 20
-        mainView.layer.cornerRadius = 20
-        // New User name and Password
-        self.userName = enteredUserName
-        self.password = enteredPassword
+    // TextFields return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let textFieldTag = textField.tag + 1 as Int
+        let nextField: UIResponder? = textField.superview?.viewWithTag(textFieldTag)
+        if let field: UIResponder = nextField{
+            field.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            logInthroughButton() // Main action of Done button on last TF
+        }
+        return false
     }
 }
 
@@ -73,3 +93,9 @@ extension ViewController {
     }
 }
 
+// Hide Keyboard
+extension ViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		04E072E822F970BB00015412 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E072E722F970BB00015412 /* AppDelegate.swift */; };
 		04E072EA22F970BB00015412 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E072E922F970BB00015412 /* ViewController.swift */; };
-		04E072ED22F970BB00015412 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E072EB22F970BB00015412 /* Main.storyboard */; };
+		04E072ED22F970BB00015412 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E072EB22F970BB00015412 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		04E072EF22F970BB00015412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E072EE22F970BB00015412 /* Assets.xcassets */; };
 		04E072F222F970BB00015412 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E072F022F970BB00015412 /* LaunchScreen.storyboard */; };
 		04ED660422F9A96600CECE9E /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ED660322F9A96600CECE9E /* secondViewController.swift */; };
@@ -58,8 +58,8 @@
 			children = (
 				04E072E722F970BB00015412 /* AppDelegate.swift */,
 				04E072E922F970BB00015412 /* ViewController.swift */,
-				04E072EB22F970BB00015412 /* Main.storyboard */,
 				04ED660322F9A96600CECE9E /* secondViewController.swift */,
+				04E072EB22F970BB00015412 /* Main.storyboard */,
 				04E072EE22F970BB00015412 /* Assets.xcassets */,
 				04E072F022F970BB00015412 /* LaunchScreen.storyboard */,
 				04E072F322F970BB00015412 /* Info.plist */,
@@ -93,6 +93,10 @@
 		04E072DC22F970BB00015412 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					1,
+					2,
+				);
 				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Артем";
